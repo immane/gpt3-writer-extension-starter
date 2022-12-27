@@ -1,6 +1,6 @@
 {
-  "name": "GPT-3 Writer",
-  "description": "Write a blog post in the style of your favorite thinker anywhere!",
+  "name": "Funny story generator",
+  "description": "highlight your title, we'll generate the rest",
   "version": "1.0",
   "manifest_version": 3,
   "icons": {
@@ -11,6 +11,17 @@
   },
   "action": {
     "default_popup": "index.html",
-    "default_title": "Generate blog post"
-  }
+    "default_title": "Generate story"
+  },
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "background": {
+    "service_worker": "scripts/contextMenuServiceWorker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scripts/content.js"]
+    }
+  ],
+  "permissions": ["contextMenus", "tabs", "storage"]
 }
